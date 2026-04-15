@@ -29,10 +29,32 @@ cargo build --release
 
 The binary will be at `target/release/revue`. Add it to your PATH or copy it somewhere convenient.
 
-Set your API key:
+## Authentication
+
+revue supports multiple AI providers. Use the built-in login flow:
 
 ```
-export ANTHROPIC_API_KEY="your-key-here"
+revue login                       # default: Claude
+revue login --provider openai     # OpenAI
+revue login --provider gemini     # Google Gemini
+```
+
+This opens your browser to the provider's API key page, prompts you to paste the key, and stores it locally at `~/.config/revue/credentials.json`.
+
+Alternatively, set environment variables:
+
+```
+export ANTHROPIC_API_KEY="your-key"   # Claude
+export OPENAI_API_KEY="your-key"      # OpenAI
+export GEMINI_API_KEY="your-key"      # Gemini
+```
+
+You can also set `api_key` in `.revue.toml` for per-repo configuration.
+
+To remove stored credentials:
+
+```
+revue logout --provider claude
 ```
 
 ## Usage
@@ -53,6 +75,13 @@ Filter by minimum severity:
 
 ```
 revue --severity warning
+```
+
+Use a different provider:
+
+```
+revue --provider openai
+revue --provider gemini --model gemini-2.0-flash
 ```
 
 Output as JSON (for CI):
