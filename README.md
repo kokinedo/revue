@@ -4,6 +4,8 @@ AI-powered code review CLI.
 
 A Rust command-line tool that analyzes git diffs, builds repository context, and provides intelligent code review feedback using Claude. Detects security vulnerabilities, performance issues, bugs, and style problems with severity-graded output.
 
+![revue code review output](docs/screenshot.svg)
+
 ## Features
 
 - Reviews staged changes or arbitrary commit ranges
