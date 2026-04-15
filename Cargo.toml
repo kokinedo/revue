@@ -17,3 +17,5 @@ git2 = { version = "0.19", default-features = false }
 toml = "0.8"
 thiserror = "2"
 dirs = "6"
+async-trait = "0.1"
+open = "5"

@@ -28,6 +28,10 @@ pub struct Cli {
     #[arg(long)]
     pub model: Option<String>,
 
+    /// AI provider (claude, openai, gemini)
+    #[arg(long)]
+    pub provider: Option<String>,
+
     /// Enable verbose output
     #[arg(short, long)]
     pub verbose: bool,
@@ -37,6 +41,18 @@ pub struct Cli {
 pub enum Command {
     /// Initialize a .revue.toml config file
     Init,
+    /// Authenticate with an AI provider
+    Login {
+        /// Provider: claude, openai, gemini
+        #[arg(long, default_value = "claude")]
+        provider: String,
+    },
+    /// Remove stored credentials for a provider
+    Logout {
+        /// Provider: claude, openai, gemini
+        #[arg(long, default_value = "claude")]
+        provider: String,
+    },
 }
 
 #[derive(ValueEnum, Clone)]

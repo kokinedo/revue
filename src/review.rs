@@ -54,7 +54,7 @@ pub async fn run_review(
     parse_review_response(&raw, files_reviewed, model)
 }
 
-fn build_system_prompt() -> String {
+pub fn build_system_prompt() -> String {
     r#"You are a senior software engineer conducting a thorough code review. Analyze the provided code changes and identify issues across these categories: security, performance, bug, style, maintainability.
 
 For each issue, assess severity:
@@ -91,7 +91,7 @@ Guidelines:
         .to_string()
 }
 
-fn build_user_message(diffs: &[FileDiff], context: &RepoContext) -> String {
+pub fn build_user_message(diffs: &[FileDiff], context: &RepoContext) -> String {
     let mut msg = String::new();
 
     msg.push_str("# Code Review Request\n\n");
@@ -187,7 +187,7 @@ async fn call_claude(
         .ok_or_else(|| RevueError::Api("No text content in API response".into()))
 }
 
-fn parse_review_response(
+pub fn parse_review_response(
     raw: &str,
     files_reviewed: usize,
     model: &str,
